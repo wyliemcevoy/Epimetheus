@@ -10,7 +10,6 @@ namespace slOOwnet
     {
         static void Main(string[] args)
         {
-
             NeuralNet net = new NeuralNet(new int[] {10,10,10});
             Console.WriteLine(net.NodeCount());
             Console.WriteLine(net.EdgeCount());

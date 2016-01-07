@@ -17,13 +17,20 @@ namespace slOOwnet
             outputSize = layerStructure.Last();
 
             // Initialize unconnected Nodes in each layer
-            foreach (int layerSize in layerStructure)
+            for(int layerIndex = 0; layerIndex < layerStructure.Count(); layerIndex++)
             {
                 List<Node> currentLayer = new List<Node>();
+                bool inputOrOutputLayer = layerIndex == 0 || layerIndex == layerStructure.Count() - 1;
 
-                for(int i = 0; i<layerSize; i++)
+                for(int i = 0; i<layerStructure[layerIndex]; i++)
                 {
-                    currentLayer.Add(new Node());
+                    if (inputOrOutputLayer)
+                    {
+                        currentLayer.Add(new Node());
+                    } else
+                    {
+                        currentLayer.Add(new Perceptron());
+                    }
                 }
 
                 layers.Add(currentLayer);   
@@ -75,5 +82,35 @@ namespace slOOwnet
             }
             return count;
         }
+
+
+        public void setInput(double[] input)
+        {
+            if(input.Count() == inputSize)
+            {
+                List <Node> inputLayer = layers[0];
+
+                for(int i=0; i<inputSize; i++)
+                {
+                    inputLayer[i].netIn = input[i];
+                }
+
+            } else
+            {
+                // TODO : Handle bad input
+            }
+        }
+
+        public void forwardPass()
+        {
+            foreach (List<Node> layer in layers)
+            {
+                foreach (Node node in layer)
+                {
+                    node.calculate();
+                }
+            }
+        }
+
     }
 }

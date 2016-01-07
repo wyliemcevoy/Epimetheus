@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NeuralNet.cs" />
+    <Compile Include="NeuralNetFactory.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="Perceptron.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Edge.cs" />

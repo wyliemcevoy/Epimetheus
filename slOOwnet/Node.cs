@@ -30,15 +30,26 @@ namespace slOOwnet
             return outEdges.Count;
         }
 
-        public void calculate()
+        public virtual void calculate()
         {
-            netIn = 0;
-            foreach (Edge edge in outEdges)
-            {
-                netIn += edge.weight;
-            }
+            updateNetIn();
+            // for input layer nodes and output layer nodes netOut equals netIn
+            netOut = netIn;
+        }
 
-            netOut = 1 / (1 + System.Math.Exp(netIn));
+        protected void updateNetIn()
+        {
+            // If this node has input edges calcuate its net in
+            if (inEdges.Count != 0)
+            {
+
+                netIn = 0;
+
+                foreach (Edge edge in inEdges)
+                {
+                    netIn += edge.netOut;
+                }
+            }
         }
     }
 }

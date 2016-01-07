@@ -12,10 +12,20 @@ namespace slOOwnet
         public Node tail { get; set; }
         public double weight { get; set; }
 
+        public double netOut
+        {
+            get
+            {
+                return weight * tail.netOut;
+            }
+        }
+
+
         public Edge(Node tail, Node head)
         {
             this.tail = tail;
             this.head = head;
+            weight = 1;
         }
     }
 }
