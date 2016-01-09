@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExperimentRunner.cs" />
+    <Compile Include="LearningAlgorithm.cs" />
     <Compile Include="NeuralNet.cs" />
     <Compile Include="NeuralNetFactory.cs" />
     <Compile Include="Node.cs" />
