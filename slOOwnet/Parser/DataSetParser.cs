@@ -13,7 +13,7 @@ namespace slOOwnet
     {
         public LearningDataSet readTextFile(String path)
         {
-            LearningDataSet data = new LearningDataSet();
+            LearningDataSet data = null;
 
             try
             {

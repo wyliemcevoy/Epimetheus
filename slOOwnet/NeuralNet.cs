@@ -10,6 +10,12 @@ namespace slOOwnet
         public int inputSize { get; private set; }
         public int outputSize { get; private set; }
 
+        public double[] Output
+        {
+            get { return getOutput(); }
+            private set{ Output = value; }
+        }
+
         public NeuralNet(int[] layerStructure)
         {
             layers = new List<List<Node>>();
@@ -20,16 +26,15 @@ namespace slOOwnet
             for(int layerIndex = 0; layerIndex < layerStructure.Count(); layerIndex++)
             {
                 List<Node> currentLayer = new List<Node>();
-                bool inputOrOutputLayer = layerIndex == 0 || layerIndex == layerStructure.Count() - 1;
 
                 for(int i = 0; i<layerStructure[layerIndex]; i++)
                 {
-                    if (inputOrOutputLayer)
+                    if (layerIndex == 0)
                     {
-                        currentLayer.Add(new Node(setOutputToInput));
+                        currentLayer.Add(new Node(setOutputToInput,returnOne));
                     } else
                     {
-                        currentLayer.Add(new Node(sigmoid));
+                        currentLayer.Add(new Node(sigmoid, sigmoidGradient));
                     }
                 }
 
@@ -42,6 +47,20 @@ namespace slOOwnet
                 connectLayer(layers[i], layers[i + 1]);
             }
 
+        }
+
+        private double[] getOutput()
+        {
+            double[] output = new double[this.outputSize];
+
+            int i = 0;
+            foreach (Node node in layers[-1])
+            {
+                output[i] = node.netOut;
+                i++;
+            }
+
+            return output;
         }
 
         private void connectLayer(List<Node> tails, List<Node> heads)
@@ -112,6 +131,19 @@ namespace slOOwnet
             }
         }
 
+        public void backPropogate(double sumOfSquaredError)
+        {
+            for(int i = layers.Count(); i>=0; i--)
+            {
+                foreach (Node node in layers[i])
+                {
+
+                }
+            }
+
+        }
+
+
         static internal double setOutputToInput(double input)
         {
             return input;
@@ -120,6 +152,16 @@ namespace slOOwnet
         static internal double sigmoid(double input)
         {
             return 1 / (1 + Math.Exp(-input));
+        }
+
+        static internal double returnOne(double input)
+        {
+            return 1;
+        }
+
+        static internal double sigmoidGradient(double netOut)
+        {
+            return netOut*(1 - netOut);
         }
 
     }

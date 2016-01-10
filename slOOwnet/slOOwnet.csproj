@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackPropogationRunner.cs" />
     <Compile Include="Parser\DataSetParser.cs" />
     <Compile Include="Experiment.cs" />
     <Compile Include="ExperimentRunner.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="NeuralNet.cs" />
     <Compile Include="NeuralNetFactory.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="Parser\TestInstance.cs" />
     <Compile Include="Population.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,7 +64,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\TestCase.txt">
+    <Content Include="TestData\TestCase.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -12,28 +12,7 @@ namespace slOOwnet
         static void Main(string[] args)
         {
             DataSetParser dsp = new DataSetParser();
-            dsp.openFilePicker();
-
-
-            Random rand = new Random();
-
-            for(int i=0; i< 1000; i++)
-            {
-                double x = rand.NextDouble();
-                double y = rand.NextDouble();
-
-                if (rand.NextDouble() >.5)
-                {
-                    x *= -1;
-                }
-
-                if(rand.NextDouble() > .5)
-                {
-                    y *= -1;
-                }
-
-                Console.WriteLine(x+ "," + y + ":" +(x*.5 + y*.25));
-            }
+            LearningDataSet data = dsp.openFilePicker();
 
 
             NeuralNet net = new NeuralNet(new int[] {10,10,10});
