@@ -16,6 +16,7 @@ namespace slOOwnet
         {
             this.InputCount = InputCount;
             this.OutputCount = OutputCount;
+            this.Instances = new List<TestInstance>();
         }
 
         public void add(IEnumerable<double> Input, IEnumerable<double> Output)

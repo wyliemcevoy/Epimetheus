@@ -11,6 +11,7 @@ namespace slOOwnet
         public Node head { get; set; }
         public Node tail { get; set; }
         public double weight { get; set; }
+        public double updatedWeight { get; set; }
 
         public double netOut
         {
@@ -26,6 +27,11 @@ namespace slOOwnet
             this.tail = tail;
             this.head = head;
             weight = 1;
+        }
+
+        internal void update()
+        {
+            weight = updatedWeight;
         }
     }
 }

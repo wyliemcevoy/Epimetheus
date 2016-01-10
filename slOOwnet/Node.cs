@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace slOOwnet
 {
@@ -57,6 +58,39 @@ namespace slOOwnet
                     netIn += edge.netOut;
                 }
             }
+        }
+
+        internal void backPropogate(double alpha, double actualValue)
+        {
+            double dEdO = netOut - actualValue;
+            double dOdN = netOut * (1 - netOut);
+
+            foreach (Edge edge in inEdges)
+            {
+                double dNdW = edge.weight;
+                edge.updatedWeight = edge.weight - (alpha * dEdO * dOdN * dNdW);
+            }
+        }
+
+
+        internal void update()
+        {
+            foreach (Edge edge in inEdges)
+            {
+                edge.update();
+            }
+        }
+
+
+        public override string ToString()
+        {
+            String build = "{ ";
+            foreach(Edge edge in inEdges)
+            {
+                build += edge.weight + " ";
+            }
+
+            return build +"}";
         }
     }
 }
