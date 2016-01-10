@@ -26,10 +26,10 @@ namespace slOOwnet
                 {
                     if (inputOrOutputLayer)
                     {
-                        currentLayer.Add(new Node());
+                        currentLayer.Add(new Node(setOutputToInput));
                     } else
                     {
-                        currentLayer.Add(new Perceptron());
+                        currentLayer.Add(new Node(sigmoid));
                     }
                 }
 
@@ -110,6 +110,16 @@ namespace slOOwnet
                     node.calculate();
                 }
             }
+        }
+
+        static internal double setOutputToInput(double input)
+        {
+            return input;
+        }
+
+        static internal double sigmoid(double input)
+        {
+            return 1 / (1 + Math.Exp(-input));
         }
 
     }

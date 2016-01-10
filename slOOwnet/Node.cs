@@ -13,11 +13,11 @@ namespace slOOwnet
         public double netIn { get; set; }
         public double netOut { get; set; }
 
-        public Node()
+        public Node(CalculateOutputDelegate calculateOutput)
         {
             outEdges = new List<Edge>();
             inEdges = new List<Edge>();
-            calculateOutput = new CalculateOutputDelegate(setOutputToInput);
+            this.calculateOutput = calculateOutput;
         }
 
         public void addOutEdge(Edge edge)
@@ -40,11 +40,6 @@ namespace slOOwnet
             updateNetIn();
             // for input layer nodes and output layer nodes netOut equals netIn
             netOut = calculateOutput(netIn);
-        }
-
-        private double setOutputToInput(double input)
-        {
-            return input;
         }
 
         protected void updateNetIn()
