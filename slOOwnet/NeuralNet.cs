@@ -140,29 +140,28 @@ namespace slOOwnet
 
         public void backPropogate(double alpha, double[] actual)
         {
-
-            int index = 0;
-            foreach (Node node in layers[1])
+            // Output layer is calculated first
+            for (int i= 0; i< layers[layers.Count() - 1].Count(); i++)
             {
-                node.backPropogate(alpha, actual[index]);
-                index++;
+                Node node = layers[layers.Count() - 1][i];
+                node.backPropagate(alpha, actual[i]);
             }
 
-            /*
-            for(int i = layers.Count(); i>=0; i--)
+            // Propogate backwards across all hidden layers
+            for(int i = layers.Count()-2; i>0; i--)
             {
                 int index = 0;
                 foreach (Node node in layers[i])
                 {
-                    node.backPropogate(alpha, actual[index]);
+                    node.backPropagate(alpha);
                     index++;
                 }
             }
-            */
 
+            // Non batch processing so update weights after propogation of error
             foreach (List<Node> layer in layers)
             {
-                foreach(Node node in layer)
+                foreach (Node node in layer)
                 {
                     node.update();
                 }
@@ -194,7 +193,20 @@ namespace slOOwnet
 
         public override String ToString()
         {
-            return layers[1][0].ToString();
+            string build = "[[ ";
+
+            foreach (List<Node> layer in layers)
+            {
+                build += "( ";
+                foreach(Node node in layer)
+                {
+                    build += node + " ";
+                }
+                build += ")";
+            }
+
+            build += " ]]";
+            return build;
         }
 
     }

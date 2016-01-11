@@ -13,7 +13,7 @@ namespace slOOwnet
         private double errorThreshold;
         private int maxEpochs;
         /// <summary>Learning rate</summary>
-        private double alpha = .5;
+        private double alpha = .1;
 
         public BackPropogationRunner(LearningDataSet data, NeuralNet neuralNet)
         {
