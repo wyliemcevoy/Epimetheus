@@ -17,7 +17,7 @@ namespace slOOwnet
             Random rand = new Random();
             LearningDataSet dataSet = new LearningDataSet(2, 1);
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 double x = rand.NextDouble();
                 double y = rand.NextDouble();
@@ -37,21 +37,21 @@ namespace slOOwnet
 
                 double a = 1 / (1 + Math.Exp(-1 * (w - z)));
                 double b = 1 / (1 + Math.Exp(-1 * (w + z)));
-                double c = 1 / (1 + Math.Exp(-1 * (w*(-1)+ z*.5)));
-                double d = 1 / (1 + Math.Exp(-1 * (z*1)));
+                double c = 1 / (1 + Math.Exp(-1 * (w)));
+                double d = 1 / (1 + Math.Exp(-1 * (z)));
 
 
-                dataSet.add(new TestInstance(new double[] { x, y }, new double[] { a,b}));
+                dataSet.add(new TestInstance(new double[] { x, y }, new double[] { a,b,c,d}));
             }
 
             Console.WriteLine("Dataset loaded.");
-            NeuralNet net = new NeuralNet(new int[] { 2,2,2});
+            NeuralNet net = new NeuralNet(new int[] { 2,2,4});
             Console.WriteLine(net.NodeCount());
             Console.WriteLine(net.EdgeCount());
 
 
             BackPropogationRunner bp = new BackPropogationRunner(dataSet, net);
-            bp.run(.5, 100);
+            bp.run(.5, 10000);
 
             Console.ReadLine();
         }

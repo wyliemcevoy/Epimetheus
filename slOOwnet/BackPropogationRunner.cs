@@ -13,7 +13,7 @@ namespace slOOwnet
         private double errorThreshold;
         private int maxEpochs;
         /// <summary>Learning rate</summary>
-        private double alpha = .1;
+        private double alpha = .04;
 
         public BackPropogationRunner(LearningDataSet data, NeuralNet neuralNet)
         {
@@ -32,9 +32,10 @@ namespace slOOwnet
                 {
                     runInstance(testInstance);
                 }
+                neuralNet.update();
+                printError(data.Instances[1]);
             }
 
-            Console.WriteLine();
         }
 
         private void runInstance(TestInstance instance)
@@ -47,7 +48,30 @@ namespace slOOwnet
 
             double totalError = calculateSSE(actual, predicted);
 
-            Console.WriteLine(neuralNet + " Total Error : " + totalError);
+            
+            neuralNet.backPropogate(alpha, actual);
+        }
+
+        private void printError(TestInstance instance)
+        {
+            neuralNet.setInput(instance.Input);
+            neuralNet.forwardPass();
+            double[] predicted = neuralNet.Output;
+            double[] actual = instance.Output;
+            double[] error = calculateError(actual, predicted);
+
+            double totalError = calculateSSE(actual, predicted);
+
+            string a = calculateSSE(actual, predicted) + "\t";
+            string b = calculateSSE(actual, predicted) + "\t";
+            for (int i=0; i<actual.Count(); i++)
+            {
+                a += Math.Round(actual[i], 7) + " ";
+                b += Math.Round(predicted[i], 7) + " ";
+            }
+
+            Console.WriteLine(a + "\n" + b);
+
             neuralNet.backPropogate(alpha, actual);
         }
 

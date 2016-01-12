@@ -158,7 +158,14 @@ namespace slOOwnet
                 }
             }
 
+            
+
+        }
+
+        public void update()
+        {
             // Non batch processing so update weights after propogation of error
+
             foreach (List<Node> layer in layers)
             {
                 foreach (Node node in layer)
@@ -166,7 +173,6 @@ namespace slOOwnet
                     node.update();
                 }
             }
-
         }
 
 
