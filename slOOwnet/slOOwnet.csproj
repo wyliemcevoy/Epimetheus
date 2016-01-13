@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationFunction.cs" />
     <Compile Include="BackPropogationRunner.cs" />
+    <Compile Include="LearningRate.cs" />
     <Compile Include="Parser\DataSetParser.cs" />
     <Compile Include="Experiment.cs" />
     <Compile Include="ExperimentRunner.cs" />
