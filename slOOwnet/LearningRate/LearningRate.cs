@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace slOOwnet
 {
-    class LearningRate
+    interface LearningRate
     {
+        double getAlpha(Node node, Edge edge);
     }
 }

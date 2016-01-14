@@ -26,7 +26,7 @@ namespace slOOwnet
         {
             this.tail = tail;
             this.head = head;
-            weight = 1;
+            weight = .5;
         }
 
         internal void update()

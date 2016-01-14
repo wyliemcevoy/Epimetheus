@@ -45,9 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivationFunction.cs" />
+    <Compile Include="Activation\ActivationFunction.cs" />
+    <Compile Include="Activation\Identity.cs" />
+    <Compile Include="Activation\Sigmoid.cs" />
     <Compile Include="BackPropogationRunner.cs" />
-    <Compile Include="LearningRate.cs" />
+    <Compile Include="LearningRate\ConstantLearningRate.cs" />
+    <Compile Include="LearningRate\LearningRate.cs" />
     <Compile Include="Parser\DataSetParser.cs" />
     <Compile Include="Experiment.cs" />
     <Compile Include="ExperimentRunner.cs" />
@@ -70,6 +73,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

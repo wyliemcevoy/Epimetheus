@@ -9,6 +9,15 @@ namespace slOOwnet
         private List<List<Node>> layers;
         public int inputSize { get; private set; }
         public int outputSize { get; private set; }
+        
+        /// <summary>
+        /// Sigmoids store no internal information. So a single instance of the object can be shared across all nodes.
+        /// </summary>
+        private ActivationFunction sigmoid;
+        /// <summary>
+        ///Identity activation functions store no internal information. So a single instance of the object can be shared across all nodes.
+        /// </summary>
+        private ActivationFunction identity;
 
         public double[] Output
         {
@@ -21,6 +30,8 @@ namespace slOOwnet
             layers = new List<List<Node>>();
             inputSize = layerStructure.First();
             outputSize = layerStructure.Last();
+            sigmoid = new Sigmoid();
+            identity = new Identity();
 
             // Initialize unconnected Nodes in each layer
             for(int layerIndex = 0; layerIndex < layerStructure.Count(); layerIndex++)
@@ -31,10 +42,10 @@ namespace slOOwnet
                 {
                     if (layerIndex == 0)
                     {
-                        currentLayer.Add(new Node(setOutputToInput,returnOne));
+                        currentLayer.Add(new Node(identity));
                     } else
                     {
-                        currentLayer.Add(new Node(sigmoid, sigmoidGradient));
+                        currentLayer.Add(new Node(sigmoid));
                     }
                 }
 
@@ -180,20 +191,10 @@ namespace slOOwnet
         {
             return input;
         }
-
-        static internal double sigmoid(double input)
-        {
-            return 1 / (1 + Math.Exp(-input));
-        }
-
+        
         static internal double returnOne(double input)
         {
             return 1;
-        }
-
-        static internal double sigmoidGradient(double netOut)
-        {
-            return netOut*(1 - netOut);
         }
 
 

@@ -8,22 +8,18 @@ namespace slOOwnet
         private List<Edge> outEdges;
         private List<Edge> inEdges;
 
-        // TODO : move delegate definition to outside file? (research style conventions)
-        public delegate double CalculateOutputDelegate(double input);
-        public CalculateOutputDelegate calculateOutput { get; set; }
-        public CalculateOutputDelegate calculateGradient { get; set; }
         public double dEdO { get; private set; }
         public double dOdN { get; private set; } // netOut * (1-netOut)
+        public ActivationFunction activationFunction { get; set; }
 
         public double netIn { get; set; }
         public double netOut { get; set; }
 
-        public Node(CalculateOutputDelegate calculateOutput, CalculateOutputDelegate calculateGradient)
+        public Node(ActivationFunction activationFunction)
         {
             outEdges = new List<Edge>();
             inEdges = new List<Edge>();
-            this.calculateOutput = calculateOutput;
-            this.calculateGradient = calculateGradient;
+            this.activationFunction = activationFunction;
         }
 
         public void addOutEdge(Edge edge)
@@ -45,7 +41,7 @@ namespace slOOwnet
         {
             updateNetIn();
             // call calculate delegate (usually sigmoid for perceptrons)
-            netOut = calculateOutput(netIn);
+            netOut = activationFunction.calculateOuptut(this);
         }
 
         protected void updateNetIn()
@@ -79,7 +75,7 @@ namespace slOOwnet
         internal void backPropagate(double alpha, double actualValue)
         {
             dEdO = -1 * (actualValue - netOut);
-            dOdN = netOut * (1 - netOut);
+            dOdN = activationFunction.calculateGradient(this);
 
             foreach (Edge edge in inEdges)
             {
@@ -91,7 +87,7 @@ namespace slOOwnet
         internal void backPropagate(double alpha)
         {
             dEdO = 0;
-            dOdN = netOut * (1 - netOut);
+            dOdN = activationFunction.calculateGradient(this);
 
 
             // dEdO is a summation of all the error created by all of the outgoing edges from this node

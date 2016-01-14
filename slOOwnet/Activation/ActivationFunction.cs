@@ -8,7 +8,7 @@ namespace slOOwnet
 {
     interface ActivationFunction
     {
-        double calculate(double input);
-        double calculateGradient(double output);
+        double calculateOuptut(Node node);
+        double calculateGradient(Node node);
     }
 }
