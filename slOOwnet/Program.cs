@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Epimetheus.Markov;
 
-namespace slOOwnet
+namespace Epimetheus
 {
     class Program
     {
         [STAThread]
         static void Main(string[] args)
+        {
+            MarkovProblemSolver qlearner = new QLearningAgent(10000, 10000, 1);
+            qlearner.accept(new GridProblem());
+            qlearner.solve();
+
+            Console.ReadLine();
+        }
+
+
+        static void netTest()
         {
             //DataSetParser dsp = new DataSetParser();
             //LearningDataSet data = dsp.openFilePicker();
@@ -41,11 +52,11 @@ namespace slOOwnet
                 double d = 1 / (1 + Math.Exp(-1 * (z)));
 
 
-                dataSet.add(new TestInstance(new double[] { x, y }, new double[] { a,b,c,d}));
+                dataSet.add(new TestInstance(new double[] { x, y }, new double[] { a, b, c, d }));
             }
 
             Console.WriteLine("Dataset loaded.");
-            NeuralNet net = new NeuralNet(new int[] { 2,2,4});
+            NeuralNet net = new NeuralNet(new int[] { 2, 2, 4 });
             Console.WriteLine(net.NodeCount());
             Console.WriteLine(net.EdgeCount());
 
@@ -53,7 +64,6 @@ namespace slOOwnet
             BackPropogationRunner bp = new BackPropogationRunner(dataSet, net);
             bp.run(.5, 10000);
 
-            Console.ReadLine();
         }
     }
 }

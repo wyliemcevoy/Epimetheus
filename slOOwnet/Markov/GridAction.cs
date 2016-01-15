@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace slOOwnet.Markov
+namespace Epimetheus.Markov
 {
     class GridAction : StochasticAction 
     {
@@ -24,7 +24,7 @@ namespace slOOwnet.Markov
 
         public void addPossible(ActionResult actionResult)
         {
-            results.Add(actionResult;
+            results.Add(actionResult);
         }
 
         public string getName()

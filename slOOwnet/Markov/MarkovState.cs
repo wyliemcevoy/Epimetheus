@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace slOOwnet.Markov
+namespace Epimetheus.Markov
 {
    
     class MarkovState
@@ -24,6 +24,7 @@ namespace slOOwnet.Markov
 
         public MarkovState(int index, int value)
         {
+            this.actions = new List<StochasticAction>();
             this.index = index;
             this.value = value;
         }
@@ -35,17 +36,41 @@ namespace slOOwnet.Markov
 
         internal void update()
         {
-            throw new NotImplementedException();
+            if (isTerminal)
+            {
+                this.estimatedValue = this.value;
+            }
+            else
+            {
+                this.estimatedValue = nextEstimatedValue;
+            }
         }
 
         internal void calculatePolicy()
         {
-            throw new NotImplementedException();
+            double bestActionValue = -1000000000;
+
+            foreach (StochasticAction action in actions)
+            {
+                double actionValue = 0;
+
+                foreach (ActionResult result in action.getPossibleResults())
+                {
+                    actionValue += result.probability * result.state.estimatedValue;
+                }
+
+                if (actionValue > bestActionValue)
+                {
+                    policy = action;
+                    bestActionValue = actionValue;
+                }
+            }
         }
 
         internal void reset()
         {
-            throw new NotImplementedException();
+            this.estimatedValue = value;
+            this.nextEstimatedValue = value;
         }
     }
 }

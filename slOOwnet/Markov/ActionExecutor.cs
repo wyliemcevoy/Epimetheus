@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace slOOwnet.Markov
+namespace Epimetheus.Markov
 {
     class ActionExecutor
     {
@@ -24,11 +24,11 @@ namespace slOOwnet.Markov
             while( i<results.Count() && current <value)
             {
                 result = results[i];
-                current += result.getProbability();
+                current += result.probability;
                 i++;
             }
 
-            return result.getState();
+            return result.state;
         }
     }
 

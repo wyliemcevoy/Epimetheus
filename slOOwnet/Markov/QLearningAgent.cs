@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace slOOwnet.Markov
+namespace Epimetheus.Markov
 {
     class QLearningAgent : MarkovProblemSolver
     {
-        private MarkovProblem problem;
+        public MarkovProblem problem { private get; set; }
         public int maxEpochs { get; set; } = 10000;
         public int maxActionsInEpoch { get; set; } = 10000;
         private static double gamma = .9;
@@ -23,12 +23,12 @@ namespace slOOwnet.Markov
             this.maxEpochs = maxEpochs;
             this.maxActionsInEpoch = maxActionsInEpoch;
             executer = new ActionExecutor(seed);
+            rand = new Random(seed);
         }
 
         public void accept(MarkovProblem problem)
         {
             this.problem = problem;
-
         }
 
         
@@ -88,6 +88,8 @@ namespace slOOwnet.Markov
             }
 
             problem.update();
+
+            Console.WriteLine(problem.ToString());
 
             return policyHasChanged;
         }

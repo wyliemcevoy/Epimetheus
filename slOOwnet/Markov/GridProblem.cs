@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace slOOwnet.Markov
+namespace Epimetheus.Markov
 {
     class GridProblem : MarkovProblem
     {
@@ -183,7 +183,7 @@ namespace slOOwnet.Markov
         }
 
         
-        public String toString()
+        public override String ToString()
         {
             String build = "";
             for (int y = 0; y < height; y++)

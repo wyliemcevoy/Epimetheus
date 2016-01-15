@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace slOOwnet.Markov
+namespace Epimetheus.Markov
 {
     class ActionResult
     {
-        private MarkovState markovState;
-
         public ActionResult(MarkovState markovState)
         {
-            this.markovState = markovState;
+            this.state = markovState;
         }
 
         public double probability { get; set; }

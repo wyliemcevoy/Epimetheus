@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace slOOwnet
+namespace Epimetheus
 {
     class NeuralNet
     {
