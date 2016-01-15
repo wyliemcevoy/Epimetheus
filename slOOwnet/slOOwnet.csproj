@@ -51,7 +51,15 @@
     <Compile Include="BackPropogationRunner.cs" />
     <Compile Include="LearningRate\ConstantLearningRate.cs" />
     <Compile Include="LearningRate\LearningRate.cs" />
+    <Compile Include="Markov\ActionExecutor.cs" />
+    <Compile Include="Markov\ActionResult.cs" />
+    <Compile Include="Markov\Direction.cs" />
+    <Compile Include="Markov\GridAction.cs" />
+    <Compile Include="Markov\GridProblem.cs" />
+    <Compile Include="Markov\MarkovProblem.cs" />
+    <Compile Include="Markov\MarkovProblemSolver.cs" />
     <Compile Include="Markov\MarkovState.cs" />
+    <Compile Include="Markov\QLearningAgent.cs" />
     <Compile Include="Markov\StochasticAction.cs" />
     <Compile Include="Parser\DataSetParser.cs" />
     <Compile Include="Experiment.cs" />

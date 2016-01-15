@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace slOOwnet.Markov
 {
-    interface StochasticAction
+    enum Direction
     {
-        List<ActionResult> getPossibleResults();
-        void addPossible(ActionResult actionResult);
-        String getName();
+        up,down,left,right
     }
 }

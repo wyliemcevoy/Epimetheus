@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace slOOwnet.Markov
 {
    
-
     class MarkovState
     {
         public bool isTerminal { get; set; }
@@ -23,5 +22,30 @@ namespace slOOwnet.Markov
             this.actions = new List<StochasticAction>();
         }
 
+        public MarkovState(int index, int value)
+        {
+            this.index = index;
+            this.value = value;
+        }
+
+        internal void addAction(StochasticAction action)
+        {
+            actions.Add(action);
+        }
+
+        internal void update()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void calculatePolicy()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void reset()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace slOOwnet.Markov
 {
-    interface StochasticAction
+    interface MarkovProblemSolver
     {
-        List<ActionResult> getPossibleResults();
-        void addPossible(ActionResult actionResult);
-        String getName();
+        void accept(MarkovProblem problem);
+
+        void solve();
+
+        int getNumberOfItterations();
     }
 }
