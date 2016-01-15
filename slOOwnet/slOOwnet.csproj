@@ -51,6 +51,8 @@
     <Compile Include="BackPropogationRunner.cs" />
     <Compile Include="LearningRate\ConstantLearningRate.cs" />
     <Compile Include="LearningRate\LearningRate.cs" />
+    <Compile Include="Markov\MarkovState.cs" />
+    <Compile Include="Markov\StochasticAction.cs" />
     <Compile Include="Parser\DataSetParser.cs" />
     <Compile Include="Experiment.cs" />
     <Compile Include="ExperimentRunner.cs" />
@@ -73,7 +75,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Genetic\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
