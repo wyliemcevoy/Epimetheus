@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Epimetheus.Markov;
+using Epimetheus.GridGame;
 
 namespace Epimetheus
 {
@@ -12,13 +13,18 @@ namespace Epimetheus
         [STAThread]
         static void Main(string[] args)
         {
-            MarkovProblemSolver qlearner = new QLearningAgent(10000, 10000, 1);
-            qlearner.accept(new GridProblem());
-            qlearner.solve();
+            ConsoleGridGameRunner cggr = new ConsoleGridGameRunner();
 
             Console.ReadLine();
         }
 
+
+        static void runMarkovProblemSovler()
+        {
+            MarkovProblemSolver qlearner = new QLearningAgent(10000, 10000, 1);
+            qlearner.accept(new GridProblem());
+            qlearner.solve();
+        }
 
         static void netTest()
         {

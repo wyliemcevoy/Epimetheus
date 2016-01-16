@@ -49,12 +49,14 @@
     <Compile Include="Activation\Identity.cs" />
     <Compile Include="Activation\Sigmoid.cs" />
     <Compile Include="BackPropogationRunner.cs" />
+    <Compile Include="GridGame\ConsoleGridGameRunner.cs" />
     <Compile Include="LearningRate\ConstantLearningRate.cs" />
     <Compile Include="LearningRate\LearningRate.cs" />
     <Compile Include="Markov\ActionExecutor.cs" />
     <Compile Include="Markov\ActionResult.cs" />
     <Compile Include="Markov\Direction.cs" />
     <Compile Include="Markov\GridAction.cs" />
+    <Compile Include="GridGame\GridGame.cs" />
     <Compile Include="Markov\GridProblem.cs" />
     <Compile Include="Markov\MarkovProblem.cs" />
     <Compile Include="Markov\MarkovProblemSolver.cs" />
@@ -79,12 +81,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestData\TestCase.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Genetic\" />
+    <Folder Include="TestData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
