@@ -13,7 +13,7 @@ namespace Epimetheus
         [STAThread]
         static void Main(string[] args)
         {
-            ConsoleGridGameRunner cggr = new ConsoleGridGameRunner();
+            //int[,] output = new 
 
             Console.ReadLine();
         }

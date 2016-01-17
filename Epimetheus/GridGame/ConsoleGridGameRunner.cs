@@ -18,6 +18,7 @@ namespace Epimetheus.GridGame
 
             while(!game.isCompleted)
             {
+                Console.Clear();
                 Console.WriteLine(game);
 
                 ConsoleKeyInfo ki = Console.ReadKey();
@@ -25,23 +26,20 @@ namespace Epimetheus.GridGame
                 switch (ki.Key)
                 {
                     case ConsoleKey.LeftArrow:
-                        Console.WriteLine("left");
-
+                        game.update(GridGame.Action.left);
                         break;
 
                     case ConsoleKey.RightArrow:
-                        Console.WriteLine("right");
-
+                        game.update(GridGame.Action.right);
                         break;
                     case ConsoleKey.UpArrow:
-                        Console.WriteLine("up");
-
+                        game.update(GridGame.Action.up);
                         break;
                     case ConsoleKey.DownArrow:
-                        Console.WriteLine("down");
-
+                        game.update(GridGame.Action.down);
                         break;
                 }
+
 
             }
         }

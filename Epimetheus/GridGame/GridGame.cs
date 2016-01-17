@@ -14,7 +14,7 @@ namespace Epimetheus.GridGame
         public enum Action { up, down, left, right }
         private Random rand;
         private Agent agent;
-        private List<GameObject> gameObjects;
+        private List<Obstacle> obstacles;
         public bool isCompleted { get; set; }
 
 
@@ -24,8 +24,8 @@ namespace Epimetheus.GridGame
             this.width = width;
             this.height = height;
             this.isCompleted = false;
-            this.state = new int[width, height];
-            this.gameObjects = new List<GameObject>();
+            this.state = new int[height, width];
+            this.obstacles = new List<Obstacle>();
             this.rand = new Random(seed);
         }
 
@@ -42,27 +42,60 @@ namespace Epimetheus.GridGame
             update(action);
         }
 
-        public void update(Action enumAction)
+        public void update(Action action)
         {
+            switch (action)
+            {
+                case Action.down:
+                    agent.y++;
+                    break;
+                case Action.up:
+                    agent.y--;
+                    break;
+                case Action.left:
+                    agent.x--;
+                    break;
+                case Action.right:
+                    agent.x++;
+                    break;
+            }
+            sanatizePlayer();
+            checkTerminal();
+        }
 
+        private void checkTerminal()
+        {
+            foreach (Obstacle obstacle in obstacles)
+            {
+                if(obstacle.isTerminal && obstacle.inConision(agent))
+                {
+                    this.isCompleted = true;
+                }
+            }
+        }
+
+        private void sanatizePlayer()
+        {
+            agent.x = Math.Max(0, Math.Min(agent.x, width-1));
+            agent.y = Math.Max(0, Math.Min(agent.y, height-1));
         }
 
 
         public void buildRandomGame()
         {
-            gameObjects.Add(new GameObject(rand.Next(0, width-1), rand.Next(0, height-1),true, 100));
+            obstacles.Add(new Obstacle(rand.Next(0, width-1), rand.Next(0, height-1),true, 100));
             agent = new Agent(rand.Next(0, width - 1), rand.Next(0, height - 1));
         }
 
         public int[,] toOutput()
         {
-            int[,] output = new int[width, height];
+            int[,] output = new int[height, width];
 
 
             output[agent.y, agent.x] = 10;
-            foreach (GameObject gameObject in gameObjects)
+            foreach (Obstacle obstacle in obstacles)
             {
-                output[gameObject.y, gameObject.x] = gameObject.value;
+                output[obstacle.y, obstacle.x] = obstacle.value;
             }
 
             return output;
@@ -73,42 +106,65 @@ namespace Epimetheus.GridGame
             string build = "";
             int[,] output = this.toOutput();
             
-            for(int x=0; x<width;x++)
+            for(int y=0; y<height;y++)
             {
-                for(int y=0; y<height; y++)
+                for(int x=0; x<height; x++)
                 {
-                    build += output[y, x] + "\t";
+                    switch (output[y, x])
+                    {
+                        case 0:
+                            build += " ";
+                            break;
+                        case 100:
+                            build += "X";
+                            break;
+                        case 10:
+                            build += "@";
+                            break;
+                        default:
+                            build += " ";
+                            break;
+                    }
                 }
                 build += "\n";
             }
+            build += "agent : (" + agent.x + "," + agent.y + ")";
+
 
             return build;
         }
 
-
-        class GameObject
-        {
-            internal bool isTerminal { get; set; }
-            internal int value { get; set; }
+        class GameObject {
             internal int x { get; set; }
             internal int y { get; set; }
-            public GameObject(int x, int y, bool isTerminal, int value)
+            public GameObject(int x, int y)
             {
                 this.x = x;
                 this.y = y;
+            }
+
+            public bool inConision(GameObject other)
+            {
+                return x == other.x && y == other.y;
+            }
+        }
+
+        class Obstacle : GameObject
+        {
+            internal bool isTerminal { get; set; }
+            internal int value { get; set; }
+            public Obstacle(int x, int y, bool isTerminal, int value) :base(x,y)
+            {
                 this.value = value;
                 this.isTerminal = isTerminal;
             }
         }
 
-        class Agent
+        class Agent : GameObject
         {
-            internal int x { get; set; }
-            internal int y { get; set; }
-            public Agent(int x, int y)
+            public Agent(int x, int y) : base(x, y)
             {
-                this.x = x;
-                this.y = y;
+
             }
         }
     }
