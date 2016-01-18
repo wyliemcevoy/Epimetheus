@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Epimetheus.QNet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,40 +7,53 @@ using System.Threading.Tasks;
 
 namespace Epimetheus.GridGame
 {
-    public class GridGame
+    public class MarkovGridGame
     {
         public int width { get; private set; }
         public int height { get; private set; }
-        private int[,] state;
+        public int reward { get; private set; }
+        public bool isCompleted { get; set; }
         public enum Action { up, down, left, right }
+        public int numberOfActions { get; private set; }
+
+
+        private int[,] state;
         private Random rand;
         private Agent agent;
         private List<Obstacle> obstacles;
-        public bool isCompleted { get; set; }
 
 
 
-        public GridGame(int width, int height, int seed)
+
+        public MarkovGridGame(int width, int height, int seed)
         {
             this.width = width;
             this.height = height;
+            this.numberOfActions = 4;
             this.isCompleted = false;
             this.state = new int[height, width];
             this.obstacles = new List<Obstacle>();
             this.rand = new Random(seed);
         }
 
-        public void acceptInput(double input)
+        public void acceptAction(int input)
         {
-            Action action = Action.down;
             // int to Action Mapping
-
-
-            // Update game based on Action
-
-
-
-            update(action);
+            switch (input)
+            {
+                case 0:
+                    update(Action.down);
+                    break;
+                case 1:
+                    update(Action.up);
+                    break;
+                case 2:
+                    update(Action.left);
+                    break;
+                case 3:
+                    update(Action.right);
+                    break;
+            }
         }
 
         public void update(Action action)
@@ -100,6 +114,25 @@ namespace Epimetheus.GridGame
 
             return output;
         }
+
+        public QNetState toQNetState()
+        {
+            return new QNetState(squash(toOutput()), 1, isCompleted);
+        }
+
+        private int[] squash(int[,] array)
+        {
+            int[] tmp = new int[array.GetLength(0) * array.GetLength(1)];
+            Buffer.BlockCopy(array, 0, tmp, 0, tmp.Length * sizeof(int));
+            return tmp;
+        }
+
+        public void reset()
+        {
+            // TODO : Implement ...
+            throw new NotImplementedException();
+        }
+
 
         public override string ToString()
         {

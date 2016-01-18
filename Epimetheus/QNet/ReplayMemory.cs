@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Epimetheus.QNet
 {
-    class StateSequence
+    class ReplayMemory
     {
         private List<QNetState> states;
 
-        public StateSequence()
+        public ReplayMemory()
         {
             states = new List<QNetState>();
         }
@@ -19,6 +19,14 @@ namespace Epimetheus.QNet
         {
             states.Add(state);
         }
+
+        public double[] getPhi()
+        {
+            double[] phi = new double[10];
+            throw new NotImplementedException();
+            //return phi;
+        }
+
 
 
         public System.Collections.IEnumerator GetEnumerator()

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Epimetheus.QNet
 {
-    class QNetState
+    public class QNetState
     {
         public bool isTerminal { get; set; }
         public int[] input {get; set;}
         public double reward { get; set; }
-        public double[] output { get; set; }
+        public int chosenAction { get; set; }
 
         public QNetState(int[] input, double reward, bool isTerminal)
         {

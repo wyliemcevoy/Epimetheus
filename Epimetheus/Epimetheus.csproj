@@ -50,6 +50,8 @@
     <Compile Include="Activation\Sigmoid.cs" />
     <Compile Include="BackPropogationRunner.cs" />
     <Compile Include="GridGame\ConsoleGridGameRunner.cs" />
+    <Compile Include="QNet\ConstantEpsilon.cs" />
+    <Compile Include="QNet\Epsilon.cs" />
     <Compile Include="QNet\QNetAgent.cs" />
     <Compile Include="LearningRate\ConstantLearningRate.cs" />
     <Compile Include="LearningRate\LearningRate.cs" />
@@ -57,7 +59,7 @@
     <Compile Include="Markov\ActionResult.cs" />
     <Compile Include="Markov\Direction.cs" />
     <Compile Include="Markov\GridAction.cs" />
-    <Compile Include="GridGame\GridGame.cs" />
+    <Compile Include="GridGame\MarkovGridGame.cs" />
     <Compile Include="Markov\GridProblem.cs" />
     <Compile Include="Markov\MarkovProblem.cs" />
     <Compile Include="Markov\MarkovProblemSolver.cs" />
@@ -78,7 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Edge.cs" />
     <Compile Include="QNet\QNetState.cs" />
-    <Compile Include="QNet\StateSequence.cs" />
+    <Compile Include="QNet\ReplayMemory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -8,12 +8,12 @@ namespace Epimetheus.GridGame
 {
     class ConsoleGridGameRunner
     {
-        private GridGame game;
+        private MarkovGridGame game;
         
         
         public ConsoleGridGameRunner()
         {
-            game = new GridGame(10,10,0);
+            game = new MarkovGridGame(10,10,0);
             game.buildRandomGame();
 
             while(!game.isCompleted)
@@ -26,17 +26,17 @@ namespace Epimetheus.GridGame
                 switch (ki.Key)
                 {
                     case ConsoleKey.LeftArrow:
-                        game.update(GridGame.Action.left);
+                        game.update(MarkovGridGame.Action.left);
                         break;
 
                     case ConsoleKey.RightArrow:
-                        game.update(GridGame.Action.right);
+                        game.update(MarkovGridGame.Action.right);
                         break;
                     case ConsoleKey.UpArrow:
-                        game.update(GridGame.Action.up);
+                        game.update(MarkovGridGame.Action.up);
                         break;
                     case ConsoleKey.DownArrow:
-                        game.update(GridGame.Action.down);
+                        game.update(MarkovGridGame.Action.down);
                         break;
                 }
 

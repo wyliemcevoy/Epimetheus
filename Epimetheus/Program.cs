@@ -13,10 +13,19 @@ namespace Epimetheus
         [STAThread]
         static void Main(string[] args)
         {
-            //int[,] output = new 
+            ConsoleGridGameRunner gg = new ConsoleGridGameRunner();
+            
 
             Console.ReadLine();
         }
+
+        static void QNetTest()
+        {
+
+
+
+        }
+
 
 
         static void runMarkovProblemSovler()
@@ -28,8 +37,6 @@ namespace Epimetheus
 
         static void netTest()
         {
-            //DataSetParser dsp = new DataSetParser();
-            //LearningDataSet data = dsp.openFilePicker();
 
             Random rand = new Random();
             LearningDataSet dataSet = new LearningDataSet(2, 1);
