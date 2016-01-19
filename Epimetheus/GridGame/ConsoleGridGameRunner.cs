@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Epimetheus.QNet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,12 +16,13 @@ namespace Epimetheus.GridGame
         {
             game = new MarkovGridGame(10,10,0);
             game.buildRandomGame();
+            ReplayMemory memory = new ReplayMemory();
 
             while(!game.isCompleted)
             {
                 Console.Clear();
                 Console.WriteLine(game);
-
+                memory.Add(game.toQNetState());
                 ConsoleKeyInfo ki = Console.ReadKey();
 
                 switch (ki.Key)
@@ -39,8 +41,13 @@ namespace Epimetheus.GridGame
                         game.update(MarkovGridGame.Action.down);
                         break;
                 }
+            }
 
-
+            foreach(QNetState state in memory)
+            {
+                Console.Clear();
+                Console.Write(state);
+                System.Threading.Thread.Sleep(100);
             }
         }
 
