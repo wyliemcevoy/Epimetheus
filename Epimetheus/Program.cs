@@ -74,7 +74,7 @@ namespace Epimetheus
             Console.WriteLine(net.EdgeCount());
 
 
-            BackPropogationRunner bp = new BackPropogationRunner(dataSet, net);
+            BackPropagationRunner bp = new BackPropagationRunner(dataSet, net);
             bp.run(.5, 10000);
 
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Epimetheus
 {
-    class BackPropogationRunner
+    class BackPropagationRunner
     {
         private LearningDataSet data;
         private NeuralNet neuralNet;
@@ -15,7 +15,7 @@ namespace Epimetheus
         /// <summary>Learning rate</summary>
         private double alpha = .04;
 
-        public BackPropogationRunner(LearningDataSet data, NeuralNet neuralNet)
+        public BackPropagationRunner(LearningDataSet data, NeuralNet neuralNet)
         {
             this.data = data;
             this.neuralNet = neuralNet;

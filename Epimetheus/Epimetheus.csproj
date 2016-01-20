@@ -48,7 +48,7 @@
     <Compile Include="Activation\ActivationFunction.cs" />
     <Compile Include="Activation\Identity.cs" />
     <Compile Include="Activation\Sigmoid.cs" />
-    <Compile Include="BackPropogationRunner.cs" />
+    <Compile Include="BackPropagationRunner.cs" />
     <Compile Include="GridGame\ConsoleGridGameRunner.cs" />
     <Compile Include="QNet\ConstantEpsilon.cs" />
     <Compile Include="QNet\Epsilon.cs" />
