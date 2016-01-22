@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Epimetheus.Markov;
 using Epimetheus.GridGame;
+using Epimetheus.QNet;
 
 namespace Epimetheus
 {
@@ -13,16 +14,17 @@ namespace Epimetheus
         [STAThread]
         static void Main(string[] args)
         {
-            ConsoleGridGameRunner gg = new ConsoleGridGameRunner();
-            
-
+            //ConsoleGridGameRunner gg = new ConsoleGridGameRunner();
+            QNetTest();
             Console.ReadLine();
         }
 
         static void QNetTest()
         {
-
-
+            MarkovGridGame game = new MarkovGridGame(10, 10, 0);
+            game.buildRandomGame();
+            QNetAgent agent = new QNetAgent();
+            agent.runTest(game, 0);
 
         }
 

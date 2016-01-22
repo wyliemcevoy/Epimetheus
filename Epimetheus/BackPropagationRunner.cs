@@ -21,6 +21,9 @@ namespace Epimetheus
             this.neuralNet = neuralNet;
         }
 
+
+
+
         public void run(double errorThreshold, int maxEpochs)
         {
             this.errorThreshold = errorThreshold;
@@ -38,7 +41,7 @@ namespace Epimetheus
 
         }
 
-        private void runInstance(TestInstance instance)
+        public void runInstance(TestInstance instance)
         {
             neuralNet.setInput(instance.Input);
             neuralNet.forwardPass();

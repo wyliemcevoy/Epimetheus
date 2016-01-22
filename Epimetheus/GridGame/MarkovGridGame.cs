@@ -130,7 +130,7 @@ namespace Epimetheus.GridGame
         public void reset()
         {
             // TODO : Implement ...
-            throw new NotImplementedException();
+            buildRandomGame();
         }
 
 
