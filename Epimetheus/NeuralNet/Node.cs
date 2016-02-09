@@ -22,6 +22,11 @@ namespace Epimetheus
             this.activationFunction = activationFunction;
         }
 
+        public Node(Node clone)
+        {
+            this.activationFunction = clone.activationFunction;
+        }
+
         public void addOutEdge(Edge edge)
         {
             outEdges.Add(edge);
@@ -104,7 +109,6 @@ namespace Epimetheus
             }
         }
 
-
         internal void update()
         {
             foreach (Edge edge in inEdges)
@@ -112,7 +116,6 @@ namespace Epimetheus
                 edge.update();
             }
         }
-
 
         public override string ToString()
         {

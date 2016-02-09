@@ -18,7 +18,7 @@ namespace Epimetheus.QNet
         public QNetAgent()
         {
             memoryBank = new List<ReplayMemory>();
-            epsilon = new ConstantEpsilon(.1);
+            epsilon = new ConstantEpsilon(.5);
         }
 
         public void runTest(MarkovGridGame game, int seed)
@@ -71,11 +71,9 @@ namespace Epimetheus.QNet
                         }
 
                         // Ugly inefficient implementation
-                        double bestQScore = output.Max();
-                        currentState.chosenAction = output.ToList().IndexOf(bestQScore);
+                        currentState.chosenAction = output.ToList().IndexOf(output.Max());
 
-
-                        //net.backPropogate(.05,output);
+                        net.backPropogate(.05,output);
                     }
                     Console.WriteLine(numActions);
 

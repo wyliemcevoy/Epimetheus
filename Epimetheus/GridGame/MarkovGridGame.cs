@@ -117,7 +117,7 @@ namespace Epimetheus.GridGame
 
         public QNetState toQNetState()
         {
-            return new QNetState(squash(toOutput()), 1, isCompleted);
+            return new QNetState(squash(toOutput()), 0, isCompleted);
         }
 
         private int[] squash(int[,] array)

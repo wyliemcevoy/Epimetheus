@@ -22,12 +22,21 @@ namespace Epimetheus.QNet
 
         public double[] getPhi()
         {
-            double[] phi = new double[10];
-            throw new NotImplementedException();
-            //return phi;
+            double[] phi = new double[40];
+            if(states.Count() > 3 )
+            {
+                int j = 0;
+                for (int i = states.Count() - 4; i < states.Count(); i++)
+                {
+                    foreach (double d in states[i].input)
+                    {
+                        phi[j] = d;
+                        j++;
+                    }
+                }
+            }
+            return phi;
         }
-
-
 
         public System.Collections.IEnumerator GetEnumerator()
         {
