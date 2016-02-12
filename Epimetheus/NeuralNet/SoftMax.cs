@@ -8,5 +8,6 @@ namespace slOOwnet.NeuralNet
 {
     class SoftMax
     {
+
     }
 }
